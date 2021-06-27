@@ -5,46 +5,58 @@ namespace Source
 {
     public class BoundsControl : MonoBehaviour
     {
-
-        private float camHeight;
-        private float camWidth;
+        private bool _isBoundsOut;
+        [SerializeField] private bool keepOnScreen;
+        
+        private float _camHeight;
+        private float _camWidth;
+        
         private void Start()
         {
-            var mainCamera = Camera.main;
-            camHeight = mainCamera.orthographicSize;
-            camWidth = camHeight * mainCamera.aspect;
-
-            Debug.Log(camHeight);
-            Debug.Log(camWidth);
+            CalculateCameraSize();
         }
-
+        
         private void Update()
         {
-            if (Math.Abs(transform.position.y) > camHeight)
-            {
-                var pos = transform.position;
+            BoundsCheck();
+        }
 
+        private void CalculateCameraSize()
+        {
+            var mainCamera = Camera.main;
+            _camHeight = mainCamera.orthographicSize;
+            _camWidth = _camHeight * mainCamera.aspect;
+        }
+
+        private void BoundsCheck()
+        {
+            var pos = transform.position;
+            
+            if (Math.Abs(transform.position.y) > _camHeight)
+            {
                 if (pos.y > 0)
-                    pos.y = -camHeight;
+                    pos.y = -_camHeight;
                 else
-                    pos.y = camHeight;
+                    pos.y = _camHeight;
 
-                transform.position = pos;
+                _isBoundsOut = true;
             }
             
-            if (Math.Abs(transform.position.x) > Math.Abs(camWidth))
+            if (Math.Abs(transform.position.x) > Math.Abs(_camWidth))
             {
-                var pos = transform.position;
-                
                 if (pos.x > 0)
-                    pos.x = -camWidth;
+                    pos.x = -_camWidth;
                 else
-                    pos.x = camWidth;
-                
-                transform.position = pos;
+                    pos.x = _camWidth;
+
+                _isBoundsOut = true;
             }
 
+            if (keepOnScreen)
+                transform.position = pos;
             
+            if (!keepOnScreen && _isBoundsOut)
+                Destroy(gameObject);
         }
     }
 }
