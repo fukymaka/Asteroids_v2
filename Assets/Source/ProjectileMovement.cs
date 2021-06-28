@@ -18,30 +18,38 @@ namespace Source
 
         private void Fire()
         {
-            // var projectile = Instantiate(projectilePrefab, from, Quaternion.identity);
-            var directionProjectile = (to - from).normalized;
+            var directionProjectile = (from - to).normalized;
             transform.Translate(directionProjectile * (speed * Time.deltaTime));
-
-            // Debug.Log(target2.GetType());
         }
-
-        // public void SetTarget<T>() where T : MonoBehaviour
-        // {
-        //     var component = target.GetComponent<T>();
-        // }
 
         private void OnTriggerEnter2D(Collider2D target)
         {
             var hit = target.GetComponent<ILoveEnemy>();
 
-            if (targets.HasFlag(hit.Types))
+            if (targets.HasFlag(hit.Type))
             {
-                Destroy(target.gameObject);
-                var position = target.transform.position;
-                EnemySpawner.SpawnEnemy<AsteroidEnemy>(position);
-                EnemySpawner.SpawnEnemy<AsteroidEnemy>(position);
-                Destroy(gameObject);
+                switch (hit.Type)
+                {
+                    case TypesOfTarget.Asteroid:
+                        var genAsteroid = (int) target.GetComponent<AsteroidEnemy>().Generation;
+                        var position = target.transform.position;
+                        EnemySpawner.SpawnAsteroids(position, genAsteroid + 1);
+                        EnemySpawner.SpawnAsteroids(position, genAsteroid + 1);
+                        DestroyTarget(target.gameObject);
+                        break;
+                    
+                    case TypesOfTarget.Ufo:
+                    case TypesOfTarget.Player:
+                        DestroyTarget(target.gameObject);
+                        break;
+                }
             }
+        }
+
+        private void DestroyTarget(GameObject target)
+        {
+            Destroy(target);
+            Destroy(gameObject);
         }
     }
 }

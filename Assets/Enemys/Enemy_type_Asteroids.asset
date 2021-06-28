@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a10237cbd447443aba8534ad7a654009, type: 3}
-  m_Name: Enemy_type_Asteroid_2
+  m_Name: Enemy_type_Asteroids
   m_EditorClassIdentifier: 
   nameEnemy: Asteroid
-  prefab: {fileID: 1800672374441919598, guid: 075f6650663cc9449906674f02e61621, type: 3}
+  enemyGeneration:
+  - {fileID: 1800672374441919598, guid: 42803ecfbc0d1ce40b74f444979bdff4, type: 3}
+  - {fileID: 1800672374441919598, guid: 075f6650663cc9449906674f02e61621, type: 3}
+  - {fileID: 1800672374441919598, guid: 792c2c4640cf91e478a3a8fe32cf605a, type: 3}
   minSpeed: 100
   maxSpeed: 200

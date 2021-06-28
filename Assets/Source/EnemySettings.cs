@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Source
 {
@@ -7,8 +8,10 @@ namespace Source
     {
         public string nameEnemy;
 
-        public GameObject prefab;
+        // public GameObject prefab;
 
+        public List<GameObject> enemyGeneration;
+        
         public int minSpeed;
         public int maxSpeed;
     }

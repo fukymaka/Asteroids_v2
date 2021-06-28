@@ -17,13 +17,13 @@ namespace Source
 
         private void Fire()
         {
-            var projectile = Instantiate(projectilePrefab);
+            var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             var projectileMovement = projectile.GetComponent<ProjectileMovement>();
 
             projectileMovement.from = transform.position;
-            projectileMovement.to = transform.up;
+            projectileMovement.to = transform.position - transform.up;
             projectileMovement.speed = projectileSpeed;
-            projectileMovement.targets = TypesOfTarget.Enemy;
+            projectileMovement.targets = TypesOfTarget.Asteroid | TypesOfTarget.Ufo;
         }
     }
 }

@@ -4,14 +4,22 @@ using Random = UnityEngine.Random;
 
 namespace Source
 {
+    public enum AsteroidGeneration
+    {
+        none,
+        First,
+        Second,
+        Third
+    }
+    
     public class AsteroidEnemy : MonoBehaviour, ILoveEnemy
     {
-        public TypesOfTarget Types { get; set; }
+        public TypesOfTarget Type { get; set; }
+        public AsteroidGeneration Generation { get; set; }
 
         private void Start()
         {
-            Types = TypesOfTarget.Enemy;
-            Debug.Log("PRIVET");
+            Type = TypesOfTarget.Asteroid;
         }
 
         public void Move(float maxSpeed, float minSpeed)

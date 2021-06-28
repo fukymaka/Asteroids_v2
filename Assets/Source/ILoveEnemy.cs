@@ -2,7 +2,7 @@
 {
     public interface ILoveEnemy
     {
-        TypesOfTarget Types { get; set; }
+        TypesOfTarget Type { get; set; }
         void Move(float maxSpeed, float minSpeed);
         void DestroyEnemy();
     }

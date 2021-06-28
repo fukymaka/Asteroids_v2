@@ -6,7 +6,8 @@ namespace Source
     public enum TypesOfTarget
     {
         None = 0,
-        Enemy = 1,
-        Player = 2
+        Asteroid = 1,
+        Ufo = 2,
+        Player = 4
     }
 }
