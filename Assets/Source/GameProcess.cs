@@ -20,20 +20,10 @@ namespace Source
             {
                 EnemySpawner.SpawnAsteroids(Vector2.zero, 0);
             }
-        }
-
-        private void Update()
-        {
-            if (Time.time > 5)
-            {
-                StartCoroutine(SpawnUfo());
-            }
-        }
-
-        IEnumerator SpawnUfo()
-        {
+            
             EnemySpawner.SpawnUfo(Vector2.zero, 0);
-            yield return null;
+            EnemySpawner.SpawnUfo(Vector2.zero, 1);
+            
         }
     }
 }
