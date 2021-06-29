@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidsSettings: {fileID: 11400000, guid: 9a40a5f159263ab4b8ee3397db602745, type: 2}
-  ufoSettings: {fileID: 0}
+  ufoSettings: {fileID: 11400000, guid: de13e02e663b89f48a3dcb57796ce1bb, type: 2}
   startNumOfAsteroids: 1
 --- !u!1 &1477884899
 GameObject:

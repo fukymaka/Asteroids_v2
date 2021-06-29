@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Source
 {
@@ -9,21 +10,30 @@ namespace Source
         [SerializeField] EnemySettings asteroidsSettings;
         [SerializeField] EnemySettings ufoSettings;
         [SerializeField] private int startNumOfAsteroids = 4;
-        
-        
+
+
         private void Start()
+        {
+            Invoke(nameof(SpawnUfo), 2);
+        }
+
+        private void Awake()
         {
             EnemySpawner.AsteroidsSettings = asteroidsSettings;
             EnemySpawner.UfoSettings = ufoSettings;
             
             for (int i = 0; i < startNumOfAsteroids; i++)
             {
-                EnemySpawner.SpawnAsteroids(Vector2.zero, 0);
+                EnemySpawner.SpawnEnemy<AsteroidEnemy>(EnemySpawner.GetAsteroidSpawnPos(), 0);
             }
-            
-            EnemySpawner.SpawnUfo(Vector2.zero, 0);
-            EnemySpawner.SpawnUfo(Vector2.zero, 1);
-            
         }
+
+        void SpawnUfo()
+        {
+            EnemySpawner.SpawnEnemy<UfoEnemy>(EnemySpawner.GetAsteroidSpawnPos(), 0);
+            Invoke(nameof(SpawnUfo), 2);
+        }
+
+        
     }
 }

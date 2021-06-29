@@ -24,7 +24,7 @@ namespace Source
 
         private void OnTriggerEnter2D(Collider2D target)
         {
-            var hit = target.GetComponent<ILoveEnemy>();
+            var hit = target.GetComponent<IMovableObject>();
 
             if (targets.HasFlag(hit.Type))
             {
@@ -33,8 +33,8 @@ namespace Source
                     case TypesOfTarget.Asteroid:
                         var genAsteroid = (int) target.GetComponent<AsteroidEnemy>().Generation;
                         var position = target.transform.position;
-                        EnemySpawner.SpawnAsteroids(position, genAsteroid + 1);
-                        EnemySpawner.SpawnAsteroids(position, genAsteroid + 1);
+                        EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
+                        EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
                         DestroyTarget(target.gameObject);
                         break;
                     

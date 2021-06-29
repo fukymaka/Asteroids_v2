@@ -1,28 +1,72 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
+
 namespace Source
 {
-    public static class EnemySpawner  
+    public static class EnemySpawner 
     {
+        private static float _clearZoneRadius = 3f;
+        private static float _outerBounds = 3f;
+        
         public static EnemySettings AsteroidsSettings;
         public static EnemySettings UfoSettings;
-        
-        public static void SpawnAsteroids(Vector2 startPos, int gen) 
+
+        public static void SpawnEnemy<T>(Vector2 startPos, int gen) where T : MonoBehaviour, IMovableObject
         {
-            if (gen >= AsteroidsSettings.enemyGeneration.Count)
+            var tempEnemy = new GameObject();
+            var enemyComponent = tempEnemy.AddComponent<T>();
+
+            EnemySettings currentSettings = null;
+            
+            switch (enemyComponent.Type)
             {
-                Debug.Log("Generation is over");
-                return;
+                case TypesOfTarget.Asteroid:
+                    currentSettings = AsteroidsSettings;
+                    break;
+                case TypesOfTarget.Ufo:
+                    currentSettings = UfoSettings;
+                    break;
             }
 
-            var enemy = GameObject.Instantiate(AsteroidsSettings.enemyGeneration[gen], startPos, Quaternion.identity);
-            enemy.AddComponent<AsteroidEnemy>().Move(AsteroidsSettings.maxSpeed * (gen + 1), AsteroidsSettings.minSpeed * (gen + 1));
-            enemy.GetComponent<AsteroidEnemy>().Generation = (AsteroidGeneration) gen;
+            Object.Destroy(tempEnemy);
+
+            if (currentSettings != null)
+            {
+                if (gen >= currentSettings.enemyGeneration.Count)
+                {
+                    Debug.Log("Generation is over");
+                    return;
+                }
+                
+                var enemy = Object.Instantiate(currentSettings.enemyGeneration[gen], startPos, Quaternion.identity);
+                enemyComponent = enemy.AddComponent<T>();
+                var speedMultiplier = gen == 0 ? 1 : 2;
+                enemyComponent.Generation = (Generation) gen;
+                enemyComponent.Move(currentSettings.maxSpeed * speedMultiplier, currentSettings.minSpeed * speedMultiplier);
+            }
         }
 
-        public static void SpawnUfo(Vector2 startPos, int gen)
+
+        public static Vector2 GetAsteroidSpawnPos()
         {
-            var enemy = GameObject.Instantiate(UfoSettings.enemyGeneration[gen], startPos, Quaternion.identity);
-            enemy.AddComponent<UfoEnemy>().Move(UfoSettings.maxSpeed * (gen + 1), UfoSettings.minSpeed * (gen + 1));
+            var boundHeight = BoundsControl.BoundHeight;
+            var boundWidth = BoundsControl.BoundWidth;
+
+            var startPos = Vector2.zero;
+            
+           
+            //todo
+            while (Math.Abs(startPos.x) < _clearZoneRadius && Math.Abs(startPos.y) < _clearZoneRadius)
+            {
+                startPos.x = Random.Range(-boundWidth, boundWidth);
+                startPos.y = Random.Range(-boundHeight, boundHeight);
+            }
+            
+            return startPos;
         }
+
+        
     }
 }

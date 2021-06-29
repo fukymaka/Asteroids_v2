@@ -7,13 +7,13 @@ namespace Source
     {
         private bool _isBoundsOut;
         [SerializeField] private bool keepOnScreen;
-        
-        private float _camHeight;
-        private float _camWidth;
-        
-        private void Start()
+
+        public static float BoundHeight { get; private set; }
+        public static float BoundWidth { get; private set; }
+
+        private void Awake()
         {
-            CalculateCameraSize();
+            CalculateBounds();
         }
         
         private void Update()
@@ -21,33 +21,33 @@ namespace Source
             BoundsCheck();
         }
 
-        private void CalculateCameraSize()
+        private void CalculateBounds()
         {
             var mainCamera = Camera.main;
-            _camHeight = mainCamera.orthographicSize;
-            _camWidth = _camHeight * mainCamera.aspect;
+            BoundHeight = mainCamera.orthographicSize;
+            BoundWidth = BoundHeight * mainCamera.aspect;
         }
 
         private void BoundsCheck()
         {
             var pos = transform.position;
             
-            if (Math.Abs(transform.position.y) > _camHeight)
+            if (Math.Abs(transform.position.y) > BoundHeight)
             {
                 if (pos.y > 0)
-                    pos.y = -_camHeight;
+                    pos.y = -BoundHeight;
                 else
-                    pos.y = _camHeight;
+                    pos.y = BoundHeight;
 
                 _isBoundsOut = true;
             }
             
-            if (Math.Abs(transform.position.x) > Math.Abs(_camWidth))
+            if (Math.Abs(transform.position.x) > Math.Abs(BoundWidth))
             {
                 if (pos.x > 0)
-                    pos.x = -_camWidth;
+                    pos.x = -BoundWidth;
                 else
-                    pos.x = _camWidth;
+                    pos.x = BoundWidth;
 
                 _isBoundsOut = true;
             }
