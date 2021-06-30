@@ -16,5 +16,5 @@ MonoBehaviour:
   enemyGeneration:
   - {fileID: 1800672374441919598, guid: e9057c122f97fe646b4ab9c594fe6b9a, type: 3}
   - {fileID: 1800672374441919598, guid: c12de4814a19ed24e92d82ad5dc7ec8a, type: 3}
-  minSpeed: 100
-  maxSpeed: 200
+  minSpeed: 30
+  maxSpeed: 50
