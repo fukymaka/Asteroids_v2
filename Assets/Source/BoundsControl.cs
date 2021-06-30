@@ -55,8 +55,8 @@ namespace Source
             if (keepOnScreen)
                 transform.position = pos;
             
-            if (!keepOnScreen && _isBoundsOut)
-                Destroy(gameObject);
+            // if (!keepOnScreen && _isBoundsOut)
+            //     Destroy(gameObject);
         }
     }
 }

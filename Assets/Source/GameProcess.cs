@@ -30,7 +30,7 @@ namespace Source
 
         void SpawnUfo()
         {
-            EnemySpawner.SpawnEnemy<UfoEnemy>(EnemySpawner.GetAsteroidSpawnPos(), 0);
+            EnemySpawner.SpawnEnemy<UfoEnemy>(EnemySpawner.GetUfoSpawnPos(), 0);
             Invoke(nameof(SpawnUfo), 2);
         }
 

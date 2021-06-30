@@ -8,7 +8,7 @@ namespace Source
     public static class EnemySpawner 
     {
         private static float _clearZoneRadius = 3f;
-        private static float _outerBounds = 3f;
+        private static float _offsetBounds = 3f;
         
         public static EnemySettings AsteroidsSettings;
         public static EnemySettings UfoSettings;
@@ -48,15 +48,13 @@ namespace Source
             }
         }
 
-
         public static Vector2 GetAsteroidSpawnPos()
         {
             var boundHeight = BoundsControl.BoundHeight;
             var boundWidth = BoundsControl.BoundWidth;
 
             var startPos = Vector2.zero;
-            
-           
+
             //todo
             while (Math.Abs(startPos.x) < _clearZoneRadius && Math.Abs(startPos.y) < _clearZoneRadius)
             {
@@ -67,6 +65,23 @@ namespace Source
             return startPos;
         }
 
-        
+        public static Vector2 GetUfoSpawnPos()
+        {
+            var boundWidth = BoundsControl.BoundWidth;
+            var boundHeight = BoundsControl.BoundHeight;
+            var boundWidthWithOffset = BoundsControl.BoundWidth + _offsetBounds;
+            var boundHeightWithOffset = BoundsControl.BoundHeight + _offsetBounds;
+
+            var startPos = Vector2.zero;
+
+            //todo
+            while (Math.Abs(startPos.x) < boundWidth && Math.Abs(startPos.y) < boundHeight)
+            {
+                startPos.x = Random.Range(-boundWidthWithOffset, boundWidthWithOffset);
+                startPos.y = Random.Range(-boundHeightWithOffset, boundHeightWithOffset);
+            }
+            
+            return startPos;
+        }
     }
 }
