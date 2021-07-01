@@ -18,6 +18,7 @@ namespace Source
         public void Move(float maxSpeed, float minSpeed)
         {
             StartCoroutine(MoveCoroutine(maxSpeed, minSpeed));
+            SoundsComponent.Sounds.PlayUfoComingSound();
         }
 
         private IEnumerator MoveCoroutine(float maxSpeed, float minSpeed)
@@ -55,13 +56,13 @@ namespace Source
             var ufoPos = transform.position;
             var projectile = Instantiate(ProjectilePrefab, ufoPos, Quaternion.identity);
             var projectileMovement = projectile.GetComponent<ProjectileMovement>();
-
-            // var targetDirection = Vector3.
             
             projectileMovement.from = ufoPos;
             projectileMovement.to = PlayerMovement.CurrentPlayerPosition;
             projectileMovement.speed = projectileSpeed;
             projectileMovement.targets = TypeOfTarget.Player | TypeOfTarget.Asteroid;
+            
+            SoundsComponent.Sounds.PlayUfoShotSound();
         }
 
         public void OnTriggerEnter2D(Collider2D collision)

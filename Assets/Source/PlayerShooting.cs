@@ -25,6 +25,8 @@ namespace Source
             projectileMovement.to =  transform.up + position;
             projectileMovement.speed = projectileSpeed;
             projectileMovement.targets = TypeOfTarget.Asteroid | TypeOfTarget.Ufo;
+            
+            SoundsComponent.Sounds.PlayHeroShotSound();
         }
     }
 }

@@ -8,21 +8,20 @@ namespace Source
         [SerializeField] private float stopSpeed = 5f;
         [SerializeField] private float startSpeed = 1f;
         [SerializeField] private float rotationSpeed = 360f;
+        [SerializeField] private AudioSource thrustSound;
+        
         private Rigidbody2D _rigidbody;
+        private Animator _animator;
         public static Vector3 CurrentPlayerPosition { get; private set; }
 
         public TypeOfTarget PossibleCollisions { get; set; } = TypeOfTarget.Asteroid | TypeOfTarget.Ufo;
         public TypeOfTarget Type { get; set; } = TypeOfTarget.Player;
         public Generation Generation { get; set; } = 0;
 
-        public void DestroyEnemy()
-        {
-            throw new NotImplementedException();
-        }
-
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -40,10 +39,17 @@ namespace Source
             {
                 force = Vector3.zero;
             }
-            
-            if (Input.GetKey(KeyCode.W)) 
+
+            if (Input.GetKey(KeyCode.W))
+            {
                 _rigidbody.AddForce(force);
-            
+                _animator.SetBool("isThrust", true);
+                thrustSound.gameObject.SetActive(true);
+            }
+            else
+                thrustSound.gameObject.SetActive(false);
+
+
             CurrentPlayerPosition = transform.position;
         }
 

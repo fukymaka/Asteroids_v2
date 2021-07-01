@@ -24,7 +24,7 @@ namespace Source
 
                 var enemy = Object.Instantiate(currentSettings.enemyGeneration[gen], startPos, Quaternion.identity);
                 var enemyComponent = enemy.AddComponent<T>();
-                var speedMultiplier = gen == 0 ? 1 : 5;
+                var speedMultiplier = gen == 0 ? 1 : 2;
                 enemyComponent.Generation = (Generation) gen;
                 
                 //todo

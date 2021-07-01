@@ -2,7 +2,7 @@
 {
     public enum Generation
     {
-        none,
+        None,
         First,
         Second,
         Third

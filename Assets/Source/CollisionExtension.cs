@@ -19,13 +19,19 @@ namespace Source
                             var position = injured.transform.position;
                             EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
                             EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
+                            
+                            SoundsComponent.Sounds.PlayAsteroidExplosionSound();
                             break;
                     
                         case TypeOfTarget.Ufo:
+                            SoundsComponent.Sounds.PlayUfoDeathSound();
+                            break;
                         case TypeOfTarget.Player:
+                            SoundsComponent.Sounds.PlayHeroDeathSound();
                             break;
                     }
                     
+                    HighScore.AddPoints(hit);
                     Object.Destroy(injured.gameObject);
                     Object.Destroy(initiator.gameObject);
                     Object.Instantiate(Explosion.Prefab, injured.transform.position, Quaternion.identity);
