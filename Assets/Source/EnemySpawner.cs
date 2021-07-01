@@ -42,10 +42,10 @@ namespace Source
             
             switch (tempEnemyComponent.Type)
             {
-                case TypesOfTarget.Asteroid:
+                case TypeOfTarget.Asteroid:
                     currentSettings = AsteroidsSettings;
                     break;
-                case TypesOfTarget.Ufo:
+                case TypeOfTarget.Ufo:
                     currentSettings = UfoSettings;
                     break;
             }

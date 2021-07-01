@@ -20,6 +20,7 @@ namespace Source
         {
             SetEnemySettings();
             SetPrefabs();
+            AsteroidEnemy.AsteroidsCount = 0;
         }
 
         private void SetEnemySettings()

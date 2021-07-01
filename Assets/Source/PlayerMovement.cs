@@ -11,8 +11,8 @@ namespace Source
         private Rigidbody2D _rigidbody;
         public static Vector3 CurrentPlayerPosition { get; private set; }
 
-        public TypesOfTarget PossibleCollisions { get; set; } = TypesOfTarget.Asteroid | TypesOfTarget.Ufo;
-        public TypesOfTarget Type { get; set; } = TypesOfTarget.Player;
+        public TypeOfTarget PossibleCollisions { get; set; } = TypeOfTarget.Asteroid | TypeOfTarget.Ufo;
+        public TypeOfTarget Type { get; set; } = TypeOfTarget.Player;
         public Generation Generation { get; set; } = 0;
 
         public void DestroyEnemy()

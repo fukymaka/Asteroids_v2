@@ -8,8 +8,8 @@ namespace Source
 {
     public class UfoEnemy : MonoBehaviour, IMovableObject
     {
-        public TypesOfTarget PossibleCollisions { get; set; } = TypesOfTarget.Asteroid | TypesOfTarget.Player;
-        public TypesOfTarget Type { get; set; } = TypesOfTarget.Ufo;
+        public TypeOfTarget PossibleCollisions { get; set; } = TypeOfTarget.Asteroid | TypeOfTarget.Player;
+        public TypeOfTarget Type { get; set; } = TypeOfTarget.Ufo;
         public Generation Generation { get; set; }
 
         public static GameObject ProjectilePrefab { get; set; }
@@ -61,12 +61,11 @@ namespace Source
             projectileMovement.from = ufoPos;
             projectileMovement.to = PlayerMovement.CurrentPlayerPosition;
             projectileMovement.speed = projectileSpeed;
-            projectileMovement.targets = TypesOfTarget.Player | TypesOfTarget.Asteroid;
+            projectileMovement.targets = TypeOfTarget.Player | TypeOfTarget.Asteroid;
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            // collision.OnCollision(PossibleCollisions);
             this.OnCollision(collision, PossibleCollisions);
         }
     }

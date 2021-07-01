@@ -3,7 +3,7 @@
 namespace Source
 {
     [Flags]
-    public enum TypesOfTarget
+    public enum TypeOfTarget
     {
         None = 0,
         Asteroid = 1,

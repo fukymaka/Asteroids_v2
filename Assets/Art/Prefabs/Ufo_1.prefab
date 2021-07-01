@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5198018903055615713}
   - component: {fileID: 2821156208217026582}
-  - component: {fileID: -2774595417166051556}
+  - component: {fileID: 2677064128972319672}
   - component: {fileID: -1197992941011833918}
   m_Layer: 0
-  m_Name: Asteroid_1
+  m_Name: Ufo_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +55,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &-2774595417166051556
-CircleCollider2D:
+--- !u!61 &2677064128972319672
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -69,8 +69,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1.5705032, y: 0.44990605}
+  m_EdgeRadius: 0
 --- !u!114 &-1197992941011833918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d1ddc63868413ca2acceb1478f8b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepOnScreen: 1
+  keepOnScreen: 0
+  isBoundsOut: 0
 --- !u!1 &2217200431974541449
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +145,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d8e9beeeb1a573743bec5419b51f6248, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -199644854353079308, guid: ea7aeaee837f5d547bdee614401a8ae3, type: 3}
+  m_Sprite: {fileID: -983156657889264743, guid: ea7aeaee837f5d547bdee614401a8ae3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

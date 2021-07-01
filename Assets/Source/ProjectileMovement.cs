@@ -11,7 +11,7 @@ namespace Source
         [HideInInspector] public Vector2 from;
         [HideInInspector] public Vector2 to;
         [HideInInspector] public float speed;
-        [HideInInspector] public TypesOfTarget targets;
+        [HideInInspector] public TypeOfTarget targets;
 
         private void Start()
         {

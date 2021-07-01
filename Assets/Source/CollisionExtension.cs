@@ -4,7 +4,7 @@ namespace Source
 {
     public static class CollisionExtension
     {
-        public static void OnCollision(this MonoBehaviour initiator, Collider2D injured, TypesOfTarget possibleCollisions)
+        public static void OnCollision(this MonoBehaviour initiator, Collider2D injured, TypeOfTarget possibleCollisions)
         {
             if (injured.TryGetComponent(out IMovableObject hit))
             {
@@ -12,16 +12,17 @@ namespace Source
                 {
                     switch (hit.Type)
                     {
-                        case TypesOfTarget.Asteroid:
+                        case TypeOfTarget.Asteroid:
                             AsteroidEnemy.AsteroidsCount--;
+
                             var genAsteroid = (int) injured.GetComponent<AsteroidEnemy>().Generation;
                             var position = injured.transform.position;
                             EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
                             EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
                             break;
                     
-                        case TypesOfTarget.Ufo:
-                        case TypesOfTarget.Player:
+                        case TypeOfTarget.Ufo:
+                        case TypeOfTarget.Player:
                             break;
                     }
                     

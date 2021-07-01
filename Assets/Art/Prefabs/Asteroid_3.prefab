@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2774595417166051556}
   - component: {fileID: -1197992941011833918}
   m_Layer: 0
-  m_Name: Asteroid_2
+  m_Name: Asteroid_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.20529099
 --- !u!114 &-1197992941011833918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keepOnScreen: 1
+  isBoundsOut: 0
 --- !u!1 &2217200431974541449
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -217455086581007235, guid: ea7aeaee837f5d547bdee614401a8ae3, type: 3}
+  m_Sprite: {fileID: 4335250483284255847, guid: ea7aeaee837f5d547bdee614401a8ae3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

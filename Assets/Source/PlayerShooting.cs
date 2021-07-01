@@ -24,7 +24,7 @@ namespace Source
             projectileMovement.from = position;
             projectileMovement.to =  transform.up + position;
             projectileMovement.speed = projectileSpeed;
-            projectileMovement.targets = TypesOfTarget.Asteroid | TypesOfTarget.Ufo;
+            projectileMovement.targets = TypeOfTarget.Asteroid | TypeOfTarget.Ufo;
         }
     }
 }
