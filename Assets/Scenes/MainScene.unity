@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1037041174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037041176}
+  - component: {fileID: 1037041175}
+  m_Layer: 0
+  m_Name: GameProcess
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1037041175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037041174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad719c8916e412fb701c7a7035c250d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 494390394218824343, guid: eac43a00d74c6c048aca44cdc1b3d8f1, type: 3}
+  startNumOfAsteroids: 4
+  ufoIntervalSpawn: 3
+--- !u!4 &1037041176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037041174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293134485
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +180,7 @@ GameObject:
   - component: {fileID: 1293134486}
   - component: {fileID: 1293134487}
   m_Layer: 0
-  m_Name: StartGame
+  m_Name: GameInitial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,12 +212,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f0f8ff48052ba4190de6a2aa8acdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 494390394218824343, guid: eac43a00d74c6c048aca44cdc1b3d8f1, type: 3}
   asteroidsSettings: {fileID: 11400000, guid: 9a40a5f159263ab4b8ee3397db602745, type: 2}
   ufoSettings: {fileID: 11400000, guid: de13e02e663b89f48a3dcb57796ce1bb, type: 2}
-  startNumOfAsteroids: 10
   ufoProjectilePrefab: {fileID: 219344853321553952, guid: 227877d18e0a6e94da27776d42d5043d, type: 3}
   ufoProjectileSpeed: 0
+  explosionPrefab: {fileID: 1168632451276007263, guid: 1816979755ede47428232f3f5e89637f, type: 3}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0

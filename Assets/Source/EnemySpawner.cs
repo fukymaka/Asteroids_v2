@@ -5,22 +5,42 @@ using Random = UnityEngine.Random;
 
 namespace Source
 {
-    public static class EnemySpawner 
+    public class EnemySpawner 
     {
         private static float _clearZoneRadius = 3f;
         private static float _offsetBounds = 3f;
         
+        public static GameObject EnemysAnchor;
         public static EnemySettings AsteroidsSettings;
         public static EnemySettings UfoSettings;
 
         public static void SpawnEnemy<T>(Vector2 startPos, int gen) where T : MonoBehaviour, IMovableObject
         {
+            var currentSettings = SetCurrentEnemySettings<T>();
+            
+            if (currentSettings != null)
+            {
+                if (gen >= currentSettings.enemyGeneration.Count) return;
+
+                var enemy = Object.Instantiate(currentSettings.enemyGeneration[gen], startPos, Quaternion.identity);
+                var enemyComponent = enemy.AddComponent<T>();
+                var speedMultiplier = gen == 0 ? 1 : 5;
+                enemyComponent.Generation = (Generation) gen;
+                
+                //todo
+                enemyComponent.Move(currentSettings.maxSpeed * speedMultiplier, currentSettings.minSpeed * speedMultiplier);
+                SetAnchor(enemy);
+            }
+        }
+
+        private static EnemySettings SetCurrentEnemySettings<T>() where T : MonoBehaviour, IMovableObject
+        {
             var tempEnemy = new GameObject();
-            var enemyComponent = tempEnemy.AddComponent<T>();
+            var tempEnemyComponent = tempEnemy.AddComponent<T>();
 
             EnemySettings currentSettings = null;
             
-            switch (enemyComponent.Type)
+            switch (tempEnemyComponent.Type)
             {
                 case TypesOfTarget.Asteroid:
                     currentSettings = AsteroidsSettings;
@@ -32,22 +52,17 @@ namespace Source
 
             Object.Destroy(tempEnemy);
 
-            if (currentSettings != null)
-            {
-                if (gen >= currentSettings.enemyGeneration.Count)
-                {
-                    Debug.Log("Generation is over");
-                    return;
-                }
-                
-                var enemy = Object.Instantiate(currentSettings.enemyGeneration[gen], startPos, Quaternion.identity);
-                enemyComponent = enemy.AddComponent<T>();
-                var speedMultiplier = gen == 0 ? 1 : 2;
-                enemyComponent.Generation = (Generation) gen;
-                enemyComponent.Move(currentSettings.maxSpeed * speedMultiplier, currentSettings.minSpeed * speedMultiplier);
-            }
+            return currentSettings;
         }
 
+        private static void SetAnchor(GameObject enemy)
+        {
+            if (EnemysAnchor == null) 
+                EnemysAnchor = new GameObject("EnemysAnchor");
+
+            enemy.transform.SetParent(EnemysAnchor.transform);
+        }
+        
         public static Vector2 GetAsteroidSpawnPos()
         {
             var boundHeight = BoundsControl.BoundHeight;

@@ -5,9 +5,9 @@ namespace Source
 {
     public class BoundsControl : MonoBehaviour
     {
-        private bool _isBoundsOut;
         [SerializeField] private bool keepOnScreen;
 
+        public bool isBoundsOut;
         public static float BoundHeight { get; private set; }
         public static float BoundWidth { get; private set; }
 
@@ -39,7 +39,7 @@ namespace Source
                 else
                     pos.y = BoundHeight;
 
-                _isBoundsOut = true;
+                isBoundsOut = true;
             }
             
             if (Math.Abs(transform.position.x) > Math.Abs(BoundWidth))
@@ -49,7 +49,7 @@ namespace Source
                 else
                     pos.x = BoundWidth;
 
-                _isBoundsOut = true;
+                isBoundsOut = true;
             }
 
             if (keepOnScreen)

@@ -13,20 +13,22 @@ namespace Source
                     switch (hit.Type)
                     {
                         case TypesOfTarget.Asteroid:
+                            AsteroidEnemy.AsteroidsCount--;
                             var genAsteroid = (int) injured.GetComponent<AsteroidEnemy>().Generation;
                             var position = injured.transform.position;
                             EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
                             EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
-                            GameObject.Destroy(injured.gameObject);
-                            GameObject.Destroy(initiator.gameObject);
                             break;
                     
                         case TypesOfTarget.Ufo:
                         case TypesOfTarget.Player:
-                            GameObject.Destroy(injured.gameObject);
-                            GameObject.Destroy(initiator.gameObject);
                             break;
                     }
+                    
+                    Object.Destroy(injured.gameObject);
+                    Object.Destroy(initiator.gameObject);
+                    Object.Instantiate(Explosion.Prefab, injured.transform.position, Quaternion.identity);
+                    Object.Instantiate(Explosion.Prefab, initiator.transform.position, Quaternion.identity);
                 }
             }
         }
