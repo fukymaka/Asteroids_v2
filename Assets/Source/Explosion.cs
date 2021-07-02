@@ -5,7 +5,7 @@ namespace Source
     internal class Explosion : MonoBehaviour
     {
         private ParticleSystem _particle;
-        public static Explosion Prefab;
+        public static Explosion prefab;
         
         private void Start()
         {
@@ -14,10 +14,8 @@ namespace Source
 
         private void Update()
         {
-            if (_particle.isStopped)
-            {
+            if (_particle.isStopped) 
                 Destroy(gameObject);
-            }
         }
     }
 }

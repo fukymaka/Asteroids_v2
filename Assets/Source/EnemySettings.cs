@@ -8,8 +8,6 @@ namespace Source
     {
         public string nameEnemy;
 
-        // public GameObject prefab;
-
         public List<GameObject> enemyGeneration;
         
         public int minSpeed;

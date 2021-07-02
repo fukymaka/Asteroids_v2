@@ -13,7 +13,7 @@ namespace Source
                     switch (hit.Type)
                     {
                         case TypeOfTarget.Asteroid:
-                            AsteroidEnemy.AsteroidsCount--;
+                            AsteroidEnemy.asteroidsCount--;
 
                             var genAsteroid = (int) injured.GetComponent<AsteroidEnemy>().Generation;
                             var position = injured.transform.position;
@@ -34,8 +34,8 @@ namespace Source
                     HighScore.AddPoints(hit);
                     Object.Destroy(injured.gameObject);
                     Object.Destroy(initiator.gameObject);
-                    Object.Instantiate(Explosion.Prefab, injured.transform.position, Quaternion.identity);
-                    Object.Instantiate(Explosion.Prefab, initiator.transform.position, Quaternion.identity);
+                    Object.Instantiate(Explosion.prefab, injured.transform.position, Quaternion.identity);
+                    Object.Instantiate(Explosion.prefab, initiator.transform.position, Quaternion.identity);
                 }
             }
         }

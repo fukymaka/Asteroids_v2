@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482fde09254d4d2ead73ef10c35f0c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopSpeed: 20
-  startSpeed: 1
+  stopSpeed: 300
+  startSpeed: 10
   rotationSpeed: 360
   thrustSound: {fileID: 6281746724570661163}
 --- !u!114 &494390394218824344

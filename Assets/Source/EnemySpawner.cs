@@ -10,27 +10,25 @@ namespace Source
         private static float _clearZoneRadius = 3f;
         private static float _offsetBounds = 3f;
         
-        public static GameObject EnemysAnchor;
-        public static EnemySettings AsteroidsSettings;
-        public static EnemySettings UfoSettings;
+        public static GameObject enemysAnchor;
+        public static EnemySettings asteroidsSettings;
+        public static EnemySettings ufoSettings;
 
         public static void SpawnEnemy<T>(Vector2 startPos, int gen) where T : MonoBehaviour, IMovableObject
         {
             var currentSettings = SetCurrentEnemySettings<T>();
-            
-            if (currentSettings != null)
-            {
-                if (gen >= currentSettings.enemyGeneration.Count) return;
 
-                var enemy = Object.Instantiate(currentSettings.enemyGeneration[gen], startPos, Quaternion.identity);
-                var enemyComponent = enemy.AddComponent<T>();
-                var speedMultiplier = gen == 0 ? 1 : 2;
-                enemyComponent.Generation = (Generation) gen;
+            if (currentSettings == null) return;
+            if (gen >= currentSettings.enemyGeneration.Count) return;
+
+            var enemy = Object.Instantiate(currentSettings.enemyGeneration[gen], startPos, Quaternion.identity);
+            var enemyComponent = enemy.AddComponent<T>();
+            var speedMultiplier = gen == 0 ? 1 : 2;
+            enemyComponent.Generation = (Generation) gen;
                 
-                //todo
-                enemyComponent.Move(currentSettings.maxSpeed * speedMultiplier, currentSettings.minSpeed * speedMultiplier);
-                SetAnchor(enemy);
-            }
+            //todo
+            enemyComponent.Move(currentSettings.maxSpeed * speedMultiplier, currentSettings.minSpeed * speedMultiplier);
+            SetAnchor(enemy);
         }
 
         private static EnemySettings SetCurrentEnemySettings<T>() where T : MonoBehaviour, IMovableObject
@@ -38,17 +36,12 @@ namespace Source
             var tempEnemy = new GameObject();
             var tempEnemyComponent = tempEnemy.AddComponent<T>();
 
-            EnemySettings currentSettings = null;
-            
-            switch (tempEnemyComponent.Type)
+            var currentSettings = tempEnemyComponent.Type switch
             {
-                case TypeOfTarget.Asteroid:
-                    currentSettings = AsteroidsSettings;
-                    break;
-                case TypeOfTarget.Ufo:
-                    currentSettings = UfoSettings;
-                    break;
-            }
+                TypeOfTarget.Asteroid => asteroidsSettings,
+                TypeOfTarget.Ufo => ufoSettings,
+                _ => null
+            };
 
             Object.Destroy(tempEnemy);
 
@@ -57,10 +50,10 @@ namespace Source
 
         private static void SetAnchor(GameObject enemy)
         {
-            if (EnemysAnchor == null) 
-                EnemysAnchor = new GameObject("EnemysAnchor");
+            if (enemysAnchor == null) 
+                enemysAnchor = new GameObject("EnemysAnchor");
 
-            enemy.transform.SetParent(EnemysAnchor.transform);
+            enemy.transform.SetParent(enemysAnchor.transform);
         }
         
         public static Vector2 GetAsteroidSpawnPos()

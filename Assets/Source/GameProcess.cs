@@ -35,7 +35,7 @@ namespace Source
         
         private IEnumerator CheckEndRound()
         {
-            while (AsteroidEnemy.AsteroidsCount > 0)
+            while (AsteroidEnemy.asteroidsCount > 0)
                 yield return null;
             
             CancelInvoke();
@@ -75,7 +75,7 @@ namespace Source
 
         private void CleanScene()
         {
-            Destroy(EnemySpawner.EnemysAnchor);
+            Destroy(EnemySpawner.enemysAnchor);
         }
 
         private void StartNextRound()

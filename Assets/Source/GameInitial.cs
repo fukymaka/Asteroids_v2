@@ -20,13 +20,13 @@ namespace Source
         {
             SetEnemySettings();
             SetPrefabs();
-            AsteroidEnemy.AsteroidsCount = 0;
+            AsteroidEnemy.asteroidsCount = 0;
         }
 
         private void SetEnemySettings()
         {
-            EnemySpawner.AsteroidsSettings = asteroidsSettings;
-            EnemySpawner.UfoSettings = ufoSettings;
+            EnemySpawner.asteroidsSettings = asteroidsSettings;
+            EnemySpawner.ufoSettings = ufoSettings;
 
             UfoEnemy.ProjectilePrefab = ufoProjectilePrefab;
             UfoEnemy.projectileSpeed = ufoProjectileSpeed;
@@ -35,7 +35,7 @@ namespace Source
         private void SetPrefabs()
         {
             UfoEnemy.ProjectilePrefab = ufoProjectilePrefab;
-            Explosion.Prefab = explosionPrefab;
+            Explosion.prefab = explosionPrefab;
         }
 
     }

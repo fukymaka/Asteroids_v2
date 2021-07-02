@@ -11,11 +11,11 @@ namespace Source
         public TypeOfTarget Type { get;  set; } = TypeOfTarget.Asteroid;
         public Generation Generation { get; set; }
 
-        public static int AsteroidsCount;
+        public static int asteroidsCount;
 
         public void Move(float maxSpeed, float minSpeed)
         {
-            AsteroidsCount++;
+            asteroidsCount++;
             
             transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
             var rigidbody = GetComponent<Rigidbody2D>();
