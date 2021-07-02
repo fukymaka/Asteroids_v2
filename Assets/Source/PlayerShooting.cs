@@ -6,24 +6,27 @@ namespace Source
     public class PlayerShooting : MonoBehaviour
     {
         [SerializeField] private Transform projectilePrefab;
-        [SerializeField] private float projectileSpeed = 30f;
+        [SerializeField] private int projectileSpeed = 30;
         
         
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                Fire();
+                Shoot();
         }
 
-        private void Fire()
+        private void Shoot()
         {
-            var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            var position = transform.position;
+            var projectile = Instantiate(projectilePrefab, position, Quaternion.identity);
             var projectileMovement = projectile.GetComponent<ProjectileMovement>();
 
-            projectileMovement.from = transform.position;
-            projectileMovement.to = transform.position - transform.up;
+            projectileMovement.from = position;
+            projectileMovement.to =  transform.up + position;
             projectileMovement.speed = projectileSpeed;
-            projectileMovement.targets = TypesOfTarget.Asteroid | TypesOfTarget.Ufo;
+            projectileMovement.targets = TypeOfTarget.Asteroid | TypeOfTarget.Ufo;
+            
+            SoundsComponent.Sounds.PlayHeroShotSound();
         }
     }
 }

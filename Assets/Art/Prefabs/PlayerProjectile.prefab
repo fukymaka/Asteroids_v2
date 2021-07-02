@@ -49,6 +49,7 @@ MonoBehaviour:
   from: {x: 0, y: 0}
   to: {x: 0, y: 0}
   speed: 0
+  targets: 0
 --- !u!114 &4050621992261618606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keepOnScreen: 0
+  isBoundsOut: 0
 --- !u!58 &8702417527267692966
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -128,7 +130,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4c368006b1a35dd449e73119b5cd307d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

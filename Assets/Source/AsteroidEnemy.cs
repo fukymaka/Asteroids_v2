@@ -1,41 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Source
 {
-    public enum AsteroidGeneration
+    internal class AsteroidEnemy : MonoBehaviour, IMovableObject
     {
-        none,
-        First,
-        Second,
-        Third
-    }
-    
-    public class AsteroidEnemy : MonoBehaviour, ILoveEnemy
-    {
-        public TypesOfTarget Type { get; set; }
-        public AsteroidGeneration Generation { get; set; }
+        public TypeOfTarget PossibleCollisions { get; set; } = TypeOfTarget.Player | TypeOfTarget.Ufo;
+        public TypeOfTarget Type { get;  set; } = TypeOfTarget.Asteroid;
+        public Generation Generation { get; set; }
 
-        private void Start()
-        {
-            Type = TypesOfTarget.Asteroid;
-        }
+        public static int asteroidsCount;
 
         public void Move(float maxSpeed, float minSpeed)
         {
-            transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
-            GetComponent<Rigidbody2D>().AddForce(transform.up * Random.Range(minSpeed, maxSpeed));
-        }
-
-        public void DestroyEnemy()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnDestroy()
-        {
+            asteroidsCount++;
             
+            transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 359));
+            var rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.AddForce(transform.up * Random.Range(minSpeed, maxSpeed));
         }
     }
 }
