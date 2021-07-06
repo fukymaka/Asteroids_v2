@@ -3,67 +3,60 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Source
+namespace Asteroids.Source
 {
-    public class EnemySpawner 
+    public class EnemySpawner : MonoBehaviour
     {
-        private static float _clearZoneRadius = 3f;
-        private static float _offsetBounds = 3f;
+        [SerializeField] private PrefabsHolder prefabsHolder;
+        [SerializeField] private float clearZoneRadius = 3f;
+        [SerializeField] private float offsetBounds = 3f;
+
+        [SerializeField] private AsteroidSettings asteroidsSettings;
+        [SerializeField] private UfoSettings ufoSettings;
         
-        public static GameObject EnemysAnchor;
-        public static EnemySettings AsteroidsSettings;
-        public static EnemySettings UfoSettings;
+        public GameObject asteroidContainer;
+        public GameObject ufoContainer;
 
-        public static void SpawnEnemy<T>(Vector2 startPos, int gen) where T : MonoBehaviour, IMovableObject
+        public void SpawnAsteroid(Vector2 startPosition, Generation generation)
         {
-            var currentSettings = SetCurrentEnemySettings<T>();
-            
-            if (currentSettings != null)
-            {
-                if (gen >= currentSettings.enemyGeneration.Count) return;
-
-                var enemy = Object.Instantiate(currentSettings.enemyGeneration[gen], startPos, Quaternion.identity);
-                var enemyComponent = enemy.AddComponent<T>();
-                var speedMultiplier = gen == 0 ? 1 : 2;
-                enemyComponent.Generation = (Generation) gen;
-                
-                //todo
-                enemyComponent.Move(currentSettings.maxSpeed * speedMultiplier, currentSettings.minSpeed * speedMultiplier);
-                SetAnchor(enemy);
-            }
+            var asteroid = prefabsHolder.GetAsteroidPrefab(generation);
+            asteroid = Instantiate(asteroid, GetAsteroidSpawnPos(), Quaternion.identity);
+            asteroid.Generation = generation;
+            var speedMultiplier = (int) generation;
+            var asteroidSpeed = asteroidsSettings.AsteroidSpeed * speedMultiplier;
+            asteroid.Move(asteroidSpeed * speedMultiplier);
+            PutAsteroidInContainer(asteroid);
         }
 
-        private static EnemySettings SetCurrentEnemySettings<T>() where T : MonoBehaviour, IMovableObject
+        public void SpawnUfo(Vector2 startPosition, UfoType ufoType)
         {
-            var tempEnemy = new GameObject();
-            var tempEnemyComponent = tempEnemy.AddComponent<T>();
+            var ufo = prefabsHolder.GetUfoPrefab(ufoType);
+            ufo = Instantiate(ufo, GetUfoSpawnPos(), Quaternion.identity);
+            ufo.UfoType = ufoType;
+            var speedMultiplier = (int) ufoType;
+            var ufoMaxSpeed = ufoSettings.MaxSpeed * speedMultiplier;
+            var ufoMinSpeed = ufoSettings.MinSpeed * speedMultiplier;
 
-            EnemySettings currentSettings = null;
-            
-            switch (tempEnemyComponent.Type)
-            {
-                case TypeOfTarget.Asteroid:
-                    currentSettings = AsteroidsSettings;
-                    break;
-                case TypeOfTarget.Ufo:
-                    currentSettings = UfoSettings;
-                    break;
-            }
-
-            Object.Destroy(tempEnemy);
-
-            return currentSettings;
+            ufo.Move(ufoMaxSpeed, ufoMinSpeed);
+            PutUfoInContainer(ufo);
         }
-
-        private static void SetAnchor(GameObject enemy)
+        private void PutAsteroidInContainer(AsteroidEnemy asteroid)
         {
-            if (EnemysAnchor == null) 
-                EnemysAnchor = new GameObject("EnemysAnchor");
+            if (asteroidContainer == null) 
+                asteroidContainer = new GameObject("AsteroidContainer");
 
-            enemy.transform.SetParent(EnemysAnchor.transform);
+            asteroid.transform.SetParent(asteroidContainer.transform);
         }
         
-        public static Vector2 GetAsteroidSpawnPos()
+        private void PutUfoInContainer(UfoEnemy ufo)
+        {
+            if (ufoContainer == null) 
+                ufoContainer = new GameObject("UfoContainer");
+
+            ufo.transform.SetParent(ufoContainer.transform);
+        }
+        
+        public Vector2 GetAsteroidSpawnPos()
         {
             var boundHeight = BoundsControl.BoundHeight;
             var boundWidth = BoundsControl.BoundWidth;
@@ -71,7 +64,7 @@ namespace Source
             var startPos = Vector2.zero;
 
             //todo
-            while (Math.Abs(startPos.x) < _clearZoneRadius && Math.Abs(startPos.y) < _clearZoneRadius)
+            while (Math.Abs(startPos.x) < clearZoneRadius && Math.Abs(startPos.y) < clearZoneRadius)
             {
                 startPos.x = Random.Range(-boundWidth, boundWidth);
                 startPos.y = Random.Range(-boundHeight, boundHeight);
@@ -80,12 +73,12 @@ namespace Source
             return startPos;
         }
 
-        public static Vector2 GetUfoSpawnPos()
+        public Vector2 GetUfoSpawnPos()
         {
             var boundWidth = BoundsControl.BoundWidth;
             var boundHeight = BoundsControl.BoundHeight;
-            var boundWidthWithOffset = BoundsControl.BoundWidth + _offsetBounds;
-            var boundHeightWithOffset = BoundsControl.BoundHeight + _offsetBounds;
+            var boundWidthWithOffset = BoundsControl.BoundWidth + offsetBounds;
+            var boundHeightWithOffset = BoundsControl.BoundHeight + offsetBounds;
 
             var startPos = Vector2.zero;
 

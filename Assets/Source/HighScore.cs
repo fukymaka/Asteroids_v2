@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Source
+namespace Asteroids.Source
 {
     public class HighScore : MonoBehaviour
     {
@@ -27,10 +27,10 @@ namespace Source
             switch (enemy.Type)
             {
                 case TypeOfTarget.Asteroid:
-                    CurrentScore += 10 + 10 * (int) enemy.Generation;
+                    // CurrentScore += 10 + 10 * (int) enemy.Generation;
                     break;
                 case TypeOfTarget.Ufo:
-                    CurrentScore += 50 + 50 * (int) enemy.Generation;
+                    // CurrentScore += 50 + 50 * (int) enemy.Generation;
                     break;
             }
         }

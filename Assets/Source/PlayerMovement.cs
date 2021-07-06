@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Source
+namespace Asteroids.Source
 {
     public class PlayerMovement : MonoBehaviour, IMovableObject
     {

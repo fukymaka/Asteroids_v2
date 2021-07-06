@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
-namespace Source
+namespace Asteroids.Source
 {
     public class SoundsComponent : MonoBehaviour
     {

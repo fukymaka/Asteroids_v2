@@ -4,13 +4,13 @@ using System.Security.Cryptography;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Source
+namespace Asteroids.Source
 {
     public class UfoEnemy : MonoBehaviour, IMovableObject
     {
         public TypeOfTarget PossibleCollisions { get; set; } = TypeOfTarget.Asteroid | TypeOfTarget.Player;
         public TypeOfTarget Type { get; set; } = TypeOfTarget.Ufo;
-        public Generation Generation { get; set; }
+        public UfoType UfoType { get; set; }
 
         public static GameObject ProjectilePrefab { get; set; }
         public static int projectileSpeed { get; set; }

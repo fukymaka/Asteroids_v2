@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Source
+namespace Asteroids.Source
 {
     public class GameInitial : MonoBehaviour
     {
@@ -25,8 +25,8 @@ namespace Source
 
         private void SetEnemySettings()
         {
-            EnemySpawner.AsteroidsSettings = asteroidsSettings;
-            EnemySpawner.UfoSettings = ufoSettings;
+            // EnemySpawner.AsteroidsSettings = asteroidsSettings;
+            // EnemySpawner.UfoSettings = ufoSettings;
 
             UfoEnemy.ProjectilePrefab = ufoProjectilePrefab;
             UfoEnemy.projectileSpeed = ufoProjectileSpeed;

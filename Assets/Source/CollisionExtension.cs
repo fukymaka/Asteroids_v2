@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source
+namespace Asteroids.Source
 {
     public static class CollisionExtension
     {
@@ -17,8 +17,8 @@ namespace Source
 
                             var genAsteroid = (int) injured.GetComponent<AsteroidEnemy>().Generation;
                             var position = injured.transform.position;
-                            EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
-                            EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
+                            // EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
+                            // EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
                             
                             SoundsComponent.Sounds.PlayAsteroidExplosionSound();
                             break;

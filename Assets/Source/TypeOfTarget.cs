@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Source
+namespace Asteroids.Source
 {
     [Flags]
     public enum TypeOfTarget

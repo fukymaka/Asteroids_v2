@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Source
+namespace Asteroids.Source
 {
     public class ProjectileMovement : MonoBehaviour
     {

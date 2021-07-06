@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source
+namespace Asteroids.Source
 {
     internal class Explosion : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Source
+namespace Asteroids.Source
 {
     public class UiManager : MonoBehaviour
     {

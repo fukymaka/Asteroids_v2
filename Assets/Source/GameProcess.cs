@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace Source
+namespace Asteroids.Source
 {
     internal class GameProcess : MonoBehaviour
     {
@@ -14,6 +14,7 @@ namespace Source
         [SerializeField] private int startNumOfAsteroids = 4;    
         [SerializeField] private int ufoIntervalSpawn = 3;
         [SerializeField] private int maxPlayerHealth = 5;
+        [SerializeField] private EnemySpawner enemySpawner;
         
         private PlayerMovement _player;
         private int _currentRound;
@@ -75,7 +76,7 @@ namespace Source
 
         private void CleanScene()
         {
-            Destroy(EnemySpawner.EnemysAnchor);
+            // Destroy(EnemySpawner.EnemysAnchor);
         }
 
         private void StartNextRound()
@@ -100,16 +101,16 @@ namespace Source
         private void StartSpawnEnemys(int numAsteroids)
         {
             for (int i = 0; i < numAsteroids; i++)
-                EnemySpawner.SpawnEnemy<AsteroidEnemy>(EnemySpawner.GetAsteroidSpawnPos(), 0);
+                enemySpawner.SpawnAsteroid(Vector2.zero, Generation.First);
 
             Invoke(nameof(SpawnUfo), ufoIntervalSpawn);
         }
         
         private void SpawnUfo()
         {
-            var gen = Random.Range(0, 2);
+            var typeForSpawn = Random.Range(1, 3);
             
-            EnemySpawner.SpawnEnemy<UfoEnemy>(EnemySpawner.GetUfoSpawnPos(), gen);
+            enemySpawner.SpawnUfo(Vector2.zero, (UfoType) typeForSpawn);
             Invoke(nameof(SpawnUfo), ufoIntervalSpawn);
         }
     }

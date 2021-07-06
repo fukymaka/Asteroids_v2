@@ -1,9 +1,8 @@
 ﻿namespace Asteroids.Source
 {
-    public enum Generation
+    public enum UfoType
     {
         First = 1,
-        Second,
-        Third
+        Second
     }
 }

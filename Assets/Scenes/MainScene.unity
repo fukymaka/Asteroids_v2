@@ -213,6 +213,7 @@ MonoBehaviour:
   startNumOfAsteroids: 3
   ufoIntervalSpawn: 10
   maxPlayerHealth: 5
+  enemySpawner: {fileID: 1279107999}
 --- !u!4 &1037041176
 Transform:
   m_ObjectHideFlags: 0
@@ -226,6 +227,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1112119459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112119461}
+  - component: {fileID: 1112119460}
+  m_Layer: 0
+  m_Name: PrefabsHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1112119460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112119459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6060a2879d44264bc543b58fd467c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 494390394218824343, guid: eac43a00d74c6c048aca44cdc1b3d8f1, type: 3}
+  asteroidFirstGeneration: {fileID: 4387979984762592145, guid: 42803ecfbc0d1ce40b74f444979bdff4, type: 3}
+  asteroidSecondGeneration: {fileID: -8975661593215464680, guid: 075f6650663cc9449906674f02e61621, type: 3}
+  asteroidThirdGeneration: {fileID: -3689146956924797600, guid: 792c2c4640cf91e478a3a8fe32cf605a, type: 3}
+  ufoFirstType: {fileID: 7657621294154031779, guid: e9057c122f97fe646b4ab9c594fe6b9a, type: 3}
+  ufoSecondType: {fileID: -2727943955818434929, guid: c12de4814a19ed24e92d82ad5dc7ec8a, type: 3}
+  ufoProjectile: {fileID: -783822308422005528, guid: 227877d18e0a6e94da27776d42d5043d, type: 3}
+--- !u!4 &1112119461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112119459}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1232086065
 GameObject:
@@ -292,6 +343,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1279107998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279108000}
+  - component: {fileID: 1279107999}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1279107999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279107998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8e0320f20e4ef198395d26fbc2d092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsHolder: {fileID: 1112119460}
+  clearZoneRadius: 3
+  offsetBounds: 3
+  asteroidsSettings: {fileID: 11400000, guid: d1de4bb42e803094eb0ea84d3039e995, type: 2}
+  ufoSettings: {fileID: 11400000, guid: deb1cf5fded252c4686a9d6c8489b09b, type: 2}
+  asteroidContainer: {fileID: 0}
+  ufoContainer: {fileID: 0}
+--- !u!4 &1279108000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279107998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293134485
 GameObject:

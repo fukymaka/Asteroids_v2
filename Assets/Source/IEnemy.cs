@@ -1,6 +1,6 @@
 ﻿namespace Asteroids.Source
 {
-    internal class PlayerStats
+    public interface IEnemy
     {
         
     }
