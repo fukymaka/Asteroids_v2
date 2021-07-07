@@ -258,12 +258,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 494390394218824343, guid: eac43a00d74c6c048aca44cdc1b3d8f1, type: 3}
+  playerProjectile: {fileID: -783822308422005528, guid: 00335d80d4eeb2e4fb76c3b67aca86c2, type: 3}
   asteroidFirstGeneration: {fileID: 4387979984762592145, guid: 42803ecfbc0d1ce40b74f444979bdff4, type: 3}
   asteroidSecondGeneration: {fileID: -8975661593215464680, guid: 075f6650663cc9449906674f02e61621, type: 3}
   asteroidThirdGeneration: {fileID: -3689146956924797600, guid: 792c2c4640cf91e478a3a8fe32cf605a, type: 3}
   ufoFirstType: {fileID: 7657621294154031779, guid: e9057c122f97fe646b4ab9c594fe6b9a, type: 3}
   ufoSecondType: {fileID: -2727943955818434929, guid: c12de4814a19ed24e92d82ad5dc7ec8a, type: 3}
   ufoProjectile: {fileID: -783822308422005528, guid: 227877d18e0a6e94da27776d42d5043d, type: 3}
+  explosion: {fileID: 1168632451276007263, guid: 1816979755ede47428232f3f5e89637f, type: 3}
 --- !u!4 &1112119461
 Transform:
   m_ObjectHideFlags: 0
