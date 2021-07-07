@@ -6,6 +6,7 @@
         Asteroid = 1,
         Ufo = 2,
         Player = 4,
-        Projectile = 6
+        UfoProjectile = 8,
+        PlayerProjectile = 16
     }
 }

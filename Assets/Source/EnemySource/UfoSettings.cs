@@ -5,12 +5,12 @@ namespace Source.EnemySource
     [CreateAssetMenu(fileName = "Ufo_settings_", menuName = "Create Ufo settings", order = 2)]
     public class UfoSettings : ScriptableObject
     {
-        [SerializeField] private int minSpeed;
-        [SerializeField] private int maxSpeed;
-        [SerializeField] private int projectileSpeed;
+        [SerializeField] private float minSpeed;
+        [SerializeField] private float maxSpeed;
+        [SerializeField] private float projectileSpeed;
         
-        public int MinSpeed => minSpeed;
-        public int MaxSpeed => maxSpeed;
-        public int ProjectileSpeed => projectileSpeed;
+        public float MinSpeed => minSpeed;
+        public float MaxSpeed => maxSpeed;
+        public float ProjectileSpeed => projectileSpeed;
     }
 }

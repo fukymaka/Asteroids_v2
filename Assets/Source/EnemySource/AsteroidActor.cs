@@ -2,18 +2,26 @@
 using Asteroids.Source;
 using Source.ActorSupports;
 using Source.Interfaces;
+using Source.Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Source.EnemySource
 {
-    public class AsteroidActor : MonoBehaviour, IActor, ICollision
+    public class AsteroidActor : MonoBehaviour, IActor
     {
         public ActorType ActorType { get; } = ActorType.Asteroid;
-        public PossibleCollisions PossibleCollisions { get; } = PossibleCollisions.Player | PossibleCollisions.Ufo;
+        public PossibleCollisions PossibleCollisions { get; } = PossibleCollisions.Player | PossibleCollisions.Ufo | PossibleCollisions.PlayerProjectile;
+        public Vector3 CurrentPositon { get; private set; }
         public AsteroidGeneration AsteroidGeneration { get; set; }
 
         public static int AsteroidsCount;
+        public DestroyProcessor DestroyProcessor { get; set; }
+
+        private void Update()
+        {
+            CurrentPositon = transform.position;
+        }
 
         public void Move(float speed)
         {
@@ -24,18 +32,15 @@ namespace Source.EnemySource
             rigidbody.AddForce(transform.up * speed);
         }
 
-        public delegate void CollisionHandler(AsteroidActor initiator, IActor injured);
-        public event CollisionHandler AsteroidCollsion;
-
-
-        private void OnTriggerEnter2D(Collider2D collider)
+        public void DestroyThisActor()
         {
-            if (collider.TryGetComponent(out IActor injured))
-            {
-                AsteroidCollsion?.Invoke(this, injured);
-            }
+            Destroy(gameObject);
+        }
+
+        public void OnTriggerEnter2D(Collider2D collider)
+        {
+            if (collider.TryGetComponent(out IActor injured)) 
+                DestroyProcessor.CheckAsteroidCollision(this, injured);
         }
     }
-    
-    
 }

@@ -16,8 +16,7 @@ namespace Source.Services
         [SerializeField] private AsteroidSettings asteroidsSettings;
         [SerializeField] private UfoSettings ufoSettings;
         [SerializeField] private DestroyProcessor destroyProcessor;
-        
-        
+
         public GameObject asteroidContainer;
         public GameObject ufoContainer;
 
@@ -36,7 +35,7 @@ namespace Source.Services
             
             PutAsteroidInContainer(asteroid);
 
-            asteroid.AsteroidCollsion += destroyProcessor.CheckAsteroid;
+            asteroid.DestroyProcessor = destroyProcessor;
         }
 
         public void SpawnUfo(UfoType ufoType)
@@ -54,6 +53,8 @@ namespace Source.Services
             ufo.Move(ufoMaxSpeed, ufoMinSpeed);
             
             PutUfoInContainer(ufo);
+            
+            ufo.DestroyProcessor = destroyProcessor;
         }
         private void PutAsteroidInContainer(AsteroidActor asteroid)
         {

@@ -35,11 +35,9 @@ namespace Source.ActorSupports
                             break;
                     }
                     
-                    HighScore.AddPoints(hit);
+                    // HighScore.AddPoints(hit);
                     Object.Destroy(injured.gameObject);
                     Object.Destroy(initiator.gameObject);
-                    Object.Instantiate(Explosion.Prefab, injured.transform.position, Quaternion.identity);
-                    Object.Instantiate(Explosion.Prefab, initiator.transform.position, Quaternion.identity);
                 }
             }
         }

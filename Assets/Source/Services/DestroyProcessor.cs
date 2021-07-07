@@ -8,46 +8,48 @@ namespace Source.Services
 {
     public class DestroyProcessor : MonoBehaviour
     {
-        public void CheckAsteroid(AsteroidActor initiator, IActor injured)
+        [SerializeField] private EnemySpawner enemySpawner;
+        [SerializeField] private PrefabsHolder prefabsHolder;
+        public void CheckCollision(IActor initiator, IActor injured)
         {
-            var possibleCollisions = initiator.PossibleCollisions;
+            var initiatorPossibleCollisions = initiator.PossibleCollisions;
+            var injuredActorType = (PossibleCollisions) injured.ActorType;
 
-            Debug.Log($"{(int) possibleCollisions}");
-            Debug.Log($"{(int) injured.ActorType}");
-
-            if (possibleCollisions.HasFlag((PossibleCollisions) injured.ActorType))
+            if (initiatorPossibleCollisions.HasFlag(injuredActorType))
             {
-                Destroy(initiator.gameObject);
-                
-                switch (injured.ActorType)
-                {
-                    case ActorType.Projectile:
-                        Destroy(initiator);
-                        break;
-                    // Object.Destroy(initiator.gameObject);
-                    // Object.Instantiate(Explosion.Prefab, injured.transform.position, Quaternion.identity);
-                    // Object.Instantiate(Explosion.Prefab, initiator.transform.position, Quaternion.identity);
-
-                    // case ActorType.Asteroid:
-                    //     AsteroidActor.AsteroidsCount--;
-                    //
-                    //     var genAsteroid = (int) injured.GetComponent<AsteroidActor>().AsteroidGeneration;
-                    //     var position = injured.transform.position;
-                    //     // EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
-                    //     // EnemySpawner.SpawnEnemy<AsteroidEnemy>(position, genAsteroid + 1);
-                    //         
-                    //     SoundsComponent.Sounds.PlayAsteroidExplosionSound();
-                    //     break;
-                    //
-                    // case ActorType.Ufo:
-                    //     SoundsComponent.Sounds.PlayUfoDeathSound();
-                    //     break;
-                    // case ActorType.Player:
-                    //     SoundsComponent.Sounds.PlayHeroDeathSound();
-                    //     break;
-                }
+                initiator.DestroyThisActor();
+                Instantiate(prefabsHolder.Explosion, initiator.CurrentPositon, Quaternion.identity);
             }
+                
+        }
+        
+        public void CheckAsteroidCollision(AsteroidActor initiator, IActor injured)
+        {
+            var initiatorPossibleCollisions = initiator.PossibleCollisions;
+            var injuredActorType = (PossibleCollisions) injured.ActorType;
 
+            if (initiatorPossibleCollisions.HasFlag(injuredActorType))
+            {
+                switch (initiator.AsteroidGeneration)
+                {
+                    case AsteroidGeneration.First:
+                        enemySpawner.SpawnAsteroid(initiator.CurrentPositon, AsteroidGeneration.Second);
+                        enemySpawner.SpawnAsteroid(initiator.CurrentPositon, AsteroidGeneration.Second);
+                        break;
+                    case AsteroidGeneration.Second:
+                        enemySpawner.SpawnAsteroid(initiator.CurrentPositon, AsteroidGeneration.Third);
+                        enemySpawner.SpawnAsteroid(initiator.CurrentPositon, AsteroidGeneration.Third);
+                        break; 
+                }
+                
+                HighScore.AddAsteroidPoints(initiator);
+                
+                initiator.DestroyThisActor();
+                Instantiate(prefabsHolder.Explosion, initiator.CurrentPositon, Quaternion.identity);
+            }
+                
+
+            
         }
     }
 }

@@ -207,13 +207,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad719c8916e412fb701c7a7035c250d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabsHolder: {fileID: 1112119460}
+  enemySpawner: {fileID: 1279107999}
+  destroyProcessor: {fileID: 1120851933}
   uiManager: {fileID: 126253512}
+  playerSettings: {fileID: 11400000, guid: bae0a6341c8e8d045b45c716ad93bf5b, type: 2}
   delayToNextRound: 2
-  playerPrefab: {fileID: 494390394218824343, guid: eac43a00d74c6c048aca44cdc1b3d8f1, type: 3}
   startNumOfAsteroids: 3
   ufoIntervalSpawn: 10
   maxPlayerHealth: 5
-  enemySpawner: {fileID: 1279107999}
 --- !u!4 &1037041176
 Transform:
   m_ObjectHideFlags: 0
@@ -323,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e064c39e2d4c7e96bafe1af101727e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawner: {fileID: 1279107999}
 --- !u!1 &1232086065
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using Asteroids.Source;
+using Source.EnemySource;
 using Source.Interfaces;
 using UnityEngine;
 
@@ -23,17 +24,9 @@ namespace Source.ActorSupports
                 MaxScore = CurrentScore;
         }
 
-        public static void AddPoints(IMovableObject enemy)
+        public static void AddAsteroidPoints(AsteroidActor asteroid)
         {
-            switch (enemy.Type)
-            {
-                case PossibleCollisions.Asteroid:
-                    // CurrentScore += 10 + 10 * (int) enemy.Generation;
-                    break;
-                case PossibleCollisions.Ufo:
-                    // CurrentScore += 50 + 50 * (int) enemy.Generation;
-                    break;
-            }
+            CurrentScore += 10 + 10 * (int) asteroid.AsteroidGeneration;
         }
 
         public static void SavePoints()

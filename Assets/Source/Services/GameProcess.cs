@@ -11,20 +11,23 @@ namespace Source.Services
 {
     internal class GameProcess : MonoBehaviour
     {
+        [SerializeField] private PrefabsHolder prefabsHolder;
+        [SerializeField] private EnemySpawner enemySpawner;
+        [SerializeField] private DestroyProcessor destroyProcessor;
         [SerializeField] private UiManager uiManager;
+        [SerializeField] private PlayerSettings playerSettings;
         [SerializeField] private int delayToNextRound = 3;
-        [SerializeField] private PlayerMovement playerPrefab;
         [SerializeField] private int startNumOfAsteroids = 4;    
         [SerializeField] private int ufoIntervalSpawn = 3;
         [SerializeField] private int maxPlayerHealth = 5;
-        [SerializeField] private EnemySpawner enemySpawner;
         
-        private PlayerMovement _player;
+        private PlayerActor _player;
         private int _currentRound;
         private int _currentPlayerHealth;
 
         private void Start()
         {
+            AsteroidActor.AsteroidsCount = 0;
             HighScore.LoadHighScore();
             SoundsComponent.Sounds.PlayMainThemeMusic(true);
         }
@@ -96,9 +99,12 @@ namespace Source.Services
         private void SpawnPlayer()
         {
             if (_player != null)
-                Destroy(_player.gameObject); 
-            
-            _player = Instantiate(playerPrefab);
+                Destroy(_player.gameObject);
+
+            _player = Instantiate(prefabsHolder.Player);
+            _player.SetMovementSettings(playerSettings.StartSpeed, playerSettings.MaxSpeed, playerSettings.RotationSpeed);
+            _player.SetShootingSettings(prefabsHolder.PlayerProjectile, playerSettings.ProjectileSpeed);
+            _player.DestroyProcessor = destroyProcessor;
         } 
         
         private void StartSpawnEnemys(int numAsteroids)

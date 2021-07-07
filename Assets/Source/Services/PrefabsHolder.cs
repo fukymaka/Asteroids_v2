@@ -8,8 +8,8 @@ namespace Source.Services
     public class PrefabsHolder : MonoBehaviour
     {
         [Header("Player")] 
-        [SerializeField] private PlayerMovement player;
-        [SerializeField] private ProjectileMovement playerProjectile;
+        [SerializeField] private PlayerActor player;
+        [SerializeField] private ProjectileActor playerProjectile;
         [Header("Asteroids")]
         [SerializeField] private AsteroidActor asteroidFirstGeneration;
         [SerializeField] private AsteroidActor asteroidSecondGeneration;
@@ -17,12 +17,12 @@ namespace Source.Services
         [Header("Ufo")]
         [SerializeField] private UfoActor ufoFirstType;
         [SerializeField] private UfoActor ufoSecondType;
-        [SerializeField] private ProjectileMovement ufoProjectile;
+        [SerializeField] private ProjectileActor ufoProjectile;
         [SerializeField] private Explosion explosion;
         
-        public PlayerMovement Player => player;
-        public ProjectileMovement PlayerProjectile => playerProjectile;
-        public ProjectileMovement UfoProjectile => ufoProjectile;
+        public PlayerActor Player => player;
+        public ProjectileActor PlayerProjectile => playerProjectile;
+        public ProjectileActor UfoProjectile => ufoProjectile;
         public Explosion Explosion => explosion;
         
         public AsteroidActor GetAsteroidPrefab(AsteroidGeneration asteroidGeneration)

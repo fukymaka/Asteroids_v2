@@ -9,21 +9,27 @@ using Random = UnityEngine.Random;
 
 namespace Source.EnemySource
 {
-    public class UfoActor : MonoBehaviour, IActor, ICollision
+    public class UfoActor : MonoBehaviour, IActor
     {
         public ActorType ActorType { get; } = ActorType.Ufo;
-        public PossibleCollisions PossibleCollisions { get; } = PossibleCollisions.Asteroid | PossibleCollisions.Player;
+        public PossibleCollisions PossibleCollisions { get; } = PossibleCollisions.Asteroid | PossibleCollisions.Player | PossibleCollisions.PlayerProjectile;
+        public Vector3 CurrentPositon { get; private set; }
         public UfoType UfoType { get; set; }
+        public DestroyProcessor DestroyProcessor { get; set; }
+        private ProjectileActor _projectilePrefab;
+        private float _projectileSpeed;
+        
+        private void Update()
+        {
+            CurrentPositon = transform.position;
+        }
 
-        private ProjectileMovement _projectilePrefab;
-        private int _projectileSpeed;
-
-        public void SetProjectilePrefab(ProjectileMovement projectile)
+        public void SetProjectilePrefab(ProjectileActor projectile)
         {
             _projectilePrefab = projectile;
         }
 
-        public void SetProjectileSpeed(int projectileSpeed)
+        public void SetProjectileSpeed(float projectileSpeed)
         {
             _projectileSpeed = projectileSpeed;
         }
@@ -68,20 +74,28 @@ namespace Source.EnemySource
         {
             var ufoPos = transform.position;
             var projectile = Instantiate(_projectilePrefab, ufoPos, Quaternion.identity);
+
+            var projectileType = ActorType.UfoProjectile;
+            var possibleCollisions = PossibleCollisions.Asteroid | PossibleCollisions.Player;
+            var from = ufoPos;
+            var to = PlayerActor.CurrentPlayerPosition;
+            var speed = _projectileSpeed;
             
-            projectile.from = ufoPos;
-            projectile.to = PlayerMovement.CurrentPlayerPosition;
-            projectile.speed = _projectileSpeed;
-            // projectile.targets = PossibleCollisions.Player | PossibleCollisions.Asteroid;
+            projectile.InitSettings(projectileType, possibleCollisions, DestroyProcessor);
+            projectile.InitDirection(from, to, speed);
             
             SoundsComponent.Sounds.PlayUfoShotSound();
         }
 
-        public void OnTriggerEnter2D(Collider2D collision)
+        public void DestroyThisActor()
         {
-            // this.OnCollision(collision, PossibleCollisions);
+            Destroy(gameObject);
         }
-
         
+        public void OnTriggerEnter2D(Collider2D collider)
+        {
+            if (collider.TryGetComponent(out IActor injured)) 
+                DestroyProcessor.CheckCollision(this, injured);
+        }
     }
 }
