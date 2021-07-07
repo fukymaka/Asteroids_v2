@@ -280,6 +280,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1120851931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1120851932}
+  - component: {fileID: 1120851933}
+  m_Layer: 0
+  m_Name: DestroyProcessor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1120851932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120851931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1120851933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120851931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e064c39e2d4c7e96bafe1af101727e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1232086065
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +423,7 @@ MonoBehaviour:
   offsetBounds: 3
   asteroidsSettings: {fileID: 11400000, guid: d1de4bb42e803094eb0ea84d3039e995, type: 2}
   ufoSettings: {fileID: 11400000, guid: deb1cf5fded252c4686a9d6c8489b09b, type: 2}
+  destroyProcessor: {fileID: 1120851933}
   asteroidContainer: {fileID: 0}
   ufoContainer: {fileID: 0}
 --- !u!4 &1279108000
@@ -439,10 +483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f0f8ff48052ba4190de6a2aa8acdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidsSettings: {fileID: 11400000, guid: 9a40a5f159263ab4b8ee3397db602745, type: 2}
-  ufoSettings: {fileID: 11400000, guid: de13e02e663b89f48a3dcb57796ce1bb, type: 2}
-  ufoProjectilePrefab: {fileID: 219344853321553952, guid: 227877d18e0a6e94da27776d42d5043d, type: 3}
-  ufoProjectileSpeed: 10
   explosionPrefab: {fileID: 1168632451276007263, guid: 1816979755ede47428232f3f5e89637f, type: 3}
 --- !u!1 &1687258581
 GameObject:
