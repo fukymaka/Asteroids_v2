@@ -1,6 +1,4 @@
-﻿using Asteroids.Source;
-using Source.EnemySource;
-using Source.Interfaces;
+﻿using Source.EnemySource;
 using UnityEngine;
 
 namespace Source.ActorSupports
